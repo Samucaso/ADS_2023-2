@@ -23,20 +23,30 @@ class ListaEncadeada:
 
         lista.cabeca = novo_nodo
 
-    def insere_depois(self, lista, novo_dado):
+    def insere_depois(self, lista, nodo_anterior, novo_dado):
+        assert nodo_anterior, "Nodo anterior precisa existir na lista"
+
         novo_nodo = NodoLista(novo_dado)
 
-        novo_nodo.proximo = lista.cabeca
+        novo_nodo.proximo = nodo_anterior.proximo
 
-        lista.cabeca = novo_nodo
+        nodo_anterior.proximo = novo_nodo
+
+    def busca(self, lista, valor):
+        corrente = lista.cabeca
+        while corrente and corrente.dado != valor:
+            corrente = corrente.proximo
+        return corrente
 
 
 lista = ListaEncadeada()
-print("Lista vazia: ", lista)
+for i in range(8):
+    lista.insere_no_inicio(lista, i)
+print("Lista:", lista)
 
-lista.insere_no_inicio(lista, 5)
-print("Lista contém um único elemento: ", lista)
-
-lista.insere_no_inicio(lista, 10)
-print("Inserindo um novo elemento: ", lista)
-
+for i in range(8, -4, -2):
+    elemento = lista.busca(lista, i)
+    if elemento:
+        print(f"Elemento {i} presente na lista!")
+    else:
+        print(f"Elemento {i} não encontrado!")
