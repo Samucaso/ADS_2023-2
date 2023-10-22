@@ -23,19 +23,27 @@ class ListaEncadeada:
 
         lista.cabeca = novo_nodo
 
-    def insere_depois(self, lista, nodo_anterior, novo_dado):
-        assert nodo_anterior, "Nodo anterior precisa existir na lista"
-
-        novo_nodo = NodoLista(novo_dado)
-
-        novo_nodo.proximo = nodo_anterior.proximo
-
-        nodo_anterior.proximo = novo_nodo
-
     def busca(self, lista, valor):
         corrente = lista.cabeca
         while corrente and corrente.dado != valor:
             corrente = corrente.proximo
+        return corrente
+
+    def remove(self, valor):
+        anterior = None
+        corrente = self.cabeca
+
+        while corrente and corrente.dado != valor:
+            anterior = corrente
+            corrente = corrente.proximo
+
+        if corrente:
+            if anterior is None:
+                self.cabeca = corrente.proximo
+            else:
+                anterior.proximo = corrente.proximo
+            corrente.proximo = None
+
         return corrente
 
 
@@ -45,8 +53,10 @@ for i in range(8):
 print("Lista:", lista)
 
 for i in range(8, -4, -2):
-    elemento = lista.busca(lista, i)
+    elemento = lista.remove(i)
     if elemento:
-        print(f"Elemento {i} presente na lista!")
+        print(f"Elemento {i} removido da lista!")
     else:
-        print(f"Elemento {i} não encontrado!")
+        print(f"Elemento {i} não foi encontrado!")
+
+print("Lista após as remoções:", lista)
