@@ -15,7 +15,7 @@ def em_ordem(raiz):
 
     em_ordem(raiz.esquerda)
 
-    print(raiz.chave),
+    print(raiz.chave)
 
     em_ordem(raiz.direita)
 
