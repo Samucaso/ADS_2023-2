@@ -13,7 +13,13 @@ def em_ordem(raiz):
     if not raiz:
         return
     em_ordem(raiz.esquerda)
+<<<<<<< HEAD
     print(raiz.chave),
+=======
+
+    print(raiz.chave)
+
+>>>>>>> 4ac017f0ae18b5a99948842d4751c952d3fafccc
     em_ordem(raiz.direita)
 
 
