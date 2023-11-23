@@ -12,11 +12,8 @@ class NodoArvore:
 def em_ordem(raiz):
     if not raiz:
         return
-
     em_ordem(raiz.esquerda)
-
     print(raiz.chave),
-
     em_ordem(raiz.direita)
 
 
